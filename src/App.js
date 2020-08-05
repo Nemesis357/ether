@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Pages
+import Home from './pages/Home/Home';
+import SignIn from './pages/SignIn/SignIn';
+import Login from './pages/LogIn/LogIn';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  signInHandler = () => {
+    console.log('%c signInHandler', 'color:#bada55;', );
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+            <h1>Gde Jesti</h1>        
+            <div className="btn-actions">
+              <Link to={{ pathname: '/'}}>Home</Link>
+              <Link to={{ pathname: '/signin'}}>Sign in</Link>
+              <Link to={{ pathname: '/login'}}>Log in</Link>
+            </div>
+          </header>
+          <main>
+            <Route path="/" exact component={Home} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/login" component={Login} />
+          </main>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
